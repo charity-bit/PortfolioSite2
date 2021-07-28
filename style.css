@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap");
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
 
 * {
   padding: 0;
@@ -13,6 +13,19 @@ html {
 a {
   text-decoration: none;
 }
+ img{
+  height:100%;
+  width:100%;
+  object-fit:cover;
+}
+p{
+  color: white;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+}
+
+
 .container {
   min-height: 100vh;
   width: 100%;
@@ -22,7 +35,7 @@ a {
 }
 /* Hero section */
 #hero {
-  background-image: url("/img/dev-jane-01.jpg");
+  background-image: url(/img/hero-bg.png);
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
@@ -107,8 +120,6 @@ a {
 }
 
 /* Services section */
-#services {
-}
 #services .services {
   flex-direction: column;
   text-align: center;
@@ -116,45 +127,77 @@ a {
   margin: 0 auto;
   padding: 100px 0;
 }
-#services .section-title{
-    font-size: 4rem;
-    font-weight: 300;
-    color: black;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: .2rem;
-    text-align: center;
+#services .section-title {
+  font-size: 4rem;
+  font-weight: 300;
+  color: black;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  text-align: center;
 }
-#services .section-title span{
-    color:crimson;
+#services .section-title span {
+  color: crimson;
 }
-#services .service-top p{
-    font-size: 1.4rem;
-    margin-top: 5px;
-    line-height: 2.5rem;
-    font-weight: 300;
-    letter-spacing: .05rem;
+#services .service-top p {
+  color: black;
+  font-size: 1.4rem;
+  margin-top: 5px;
+  line-height: 2.5rem;
+  font-weight: 300;
+  letter-spacing: .05rem;
 }
-#services .service-bottom{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+#services .service-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top:50px;
+}
+#services .service-item {
+  flex-basis: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 10px;
+  background-image: url(/img/img-1.png);
+  background-size:cover;
+  margin: 10px 5px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+#services .service-item:after{
+  content: "";
+  position: absolute;
+  left:0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: .7;
+  z-index: -1;
+}
+#services .service-bottom .icon{
+  height: 80px;
+  width: 80px;
+  margin-bottom: 5px;
+}
+#services .service-item h2{
+  font-size:  2rem;
+  color: white;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+#services .service-item p{
+  color: white;
+  text-align: left;
+}
 
-}
-#services .service-item{
-    flex-basis: 80%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    padding: 30px;
-    border-radius: 10px;
-    background-image: url(/img/portfolio-01.jpg);
-    background-size: contain;
-    background-repeat: cover;
-    margin:10px 5px;
-}
+
+
 /* End of services section */
 /* end of hero */
 @keyframes text_reveal_box {
