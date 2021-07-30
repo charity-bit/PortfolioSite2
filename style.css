@@ -9,6 +9,7 @@
 html {
   font-size: 10px;
   font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none;
@@ -45,6 +46,7 @@ p {
 #header .header {
   min-height: 8vh;
   background-color: rgba(31, 30, 30, 0.24);
+  transition: .3s ease background-color;
 }
 
 #header .nav-bar {
@@ -63,44 +65,51 @@ p {
   background-color: rgb(31, 30, 30);
   width: 100vw;
   height: 100vh;
-  left:0;
-  top:0;
+  left: 100%;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
   overflow-x: hidden;
   flex-direction: column;
+  transition: .5s ease left;
 }
-#header .nav-list ul a{
+#header .nav-list ul.active {
+  left:0;
+}
+
+#header .nav-list ul a {
   font-size: 2.5rem;
   font-weight: 500;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
   text-decoration: none;
   color: white;
   padding: 20px;
   text-transform: uppercase;
   display: block;
 }
-#header .nav-list ul a::after{
+#header .nav-list ul a:hover {
+  color: crimson;
+}
+
+#header .nav-list ul a::after {
   content: attr(data-after);
   position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%) scale(0);
-  color: rgba(240,248,255,0.021);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: rgba(240, 248, 255, 0.021);
   font-size: 10rem;
   letter-spacing: 30px;
   z-index: -1;
-  transition: .3s ease letter-spacing;
-
+  transition: 0.3s ease letter-spacing;
 }
-#header .nav-list ul li:hover a::after{
-  transform: translate(-50%,-50%) scale(1);
+#header .nav-list ul li:hover a::after {
+  transform: translate(-50%, -50%) scale(1);
   letter-spacing: initial;
-
 }
-#header .hambuger{
+#header .hambuger {
   height: 60px;
   width: 60px;
   z-index: 100;
@@ -112,11 +121,19 @@ p {
   justify-content: center;
   position: relative;
   cursor: pointer;
-  margin: 10px;
-
-
+  margin-right: 10px;
+  transform: scale(.8);
 }
-#header .hambuger .bar{
+#header .hambuger::after{
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid white;
+  animation: hamburger_pulse 1s ease infinite;
+}
+#header .hambuger .bar {
   height: 2px;
   width: 30px;
   position: relative;
@@ -125,27 +142,31 @@ p {
 }
 
 #header .hambuger .bar::before,
-#header .hambuger .bar::after
-{
-  content: '';
+#header .hambuger .bar::after {
+  content: "";
   height: 100%;
   width: 100%;
   position: absolute;
-  left:0;
+  left: 0;
   background-color: white;
   z-index: -1;
-  transition:  .3s ease top bottom;
-
+  transition: .3s ease;
+  transition-property: top bottom;
 }
 
-#header .hambuger .bar::after{
+#header .hambuger .bar::after {
   top: 8px;
-  
 }
-#header .hambuger .bar::before{
+#header .hambuger .bar::before {
   bottom: 8px;
 }
 
+#header .hambuger.active .bar::before {
+  bottom: 0;
+}
+#header .hambuger.active .bar::after {
+  top: 0;
+}
 
 /* end of header section */
 /* Hero section */
@@ -264,7 +285,7 @@ p {
   text-align: justify;
 }
 #services .service-top {
-  width: 700px;
+  max-width: 500px;
   margin: 0 auto;
 }
 #services .service-bottom {
@@ -560,6 +581,20 @@ p {
   }
 }
 
+@keyframes hamburger_pulse{
+
+0%{
+  opacity: 1;
+  transform: scale(1);
+
+}
+100%{
+  opacity:0;
+  transform: scale(1.5);
+}
+  
+}
+
 /* Media Queries  for tablet*/
 @media only screen and (min-width: 778px) {
   .cta {
@@ -658,43 +693,70 @@ p {
     width: 10px;
   }
   #contact .contact-item .icon img {
-    object-fit: contain;
+     height: 40px;
+     width: 40px;
+     margin-top: 20px;
   }
   #contact .contact-item .contact-info {
     width: 100%;
     text-align: left;
     padding-left: 20px;
+    margin-left: 30px;
   }
-
+.contact-info h1{
+  font-size: 1rem;
+}
   /* End of contact section */
 }
 /* End of Media Queries  for tablet*/
 /* Media query for desktop */
 @media only screen and (min-width: 1200px) {
+  #header .header{
+    background-color: transparent;
+  }
+
+  #header .hambuger {
+    display: none;
+  }
+  #header .nav-list ul li {
+    display: inline-block;
+  }
+  #header .nav-list ul{
+    position: initial;
+    display: block;
+    height: auto;
+    width:fit-content;
+    background-color: transparent;
+  }
+  #header .nav-list ul a::after{
+    display: none;
+  }
+  #header .nav-list ul a{
+    font-size: 1.5rem;
+  }
+
   #services .service-bottom .service-item {
     flex-basis: 22%;
     margin: 1.5%;
   }
-  #contact .contact-item {
+
+  #contact .contact-items {
+    display: flex;
     flex-direction: row;
-    max-width: 1200px;
-    margin: 0 auto;
-   
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: ;
     
   }
+  
   #contact .contact-item img {
     width: 50px;
     height: 50px;
     margin-top: 20px;
-      
-    
-
-    
-    
   }
   #contact .contact-info {
     margin-left: 40px;
-    
   }
 }
 
